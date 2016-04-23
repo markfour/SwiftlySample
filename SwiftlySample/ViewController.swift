@@ -7,12 +7,23 @@
 //
 
 import UIKit
+import Swiftly
 
 class ViewController: UIViewController {
-
+  let tableView = UITableView(frame: CGRectZero, style: .Plain)
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+    
+    tableView.backgroundColor = .redColor()
+    view.addSubview(tableView)
+  }
+  
+  override func viewWillLayoutSubviews() {
+    print("self.view.fame \(view.frame)")
+    
+    tableView.applyLayout(.Horizontal(), .Vertical())
   }
 
   override func didReceiveMemoryWarning() {
