@@ -1,0 +1,10 @@
+PODS:
+  - Swiftly (0.1.0)
+
+DEPENDENCIES:
+  - Swiftly
+
+SPEC CHECKSUMS:
+  Swiftly: 92568c3f59bf031019cf83fb07b17d758f0bb137
+
+COCOAPODS: 0.39.0
