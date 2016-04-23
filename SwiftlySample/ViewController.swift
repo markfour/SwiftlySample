@@ -36,8 +36,6 @@ class ViewController: UIViewController {
   override func viewWillLayoutSubviews() {
     print("self.view.fame \(view.frame)")
     
-
-    
     if twoColumnConstraints.isEmpty {
       twoColumnConstraints += tableView.applyLayout(.Vertical(), .Height() / 2)
       twoColumnConstraints += propertyView.applyLayout(.Vertical() / 2, .Height() / 2)
@@ -59,7 +57,10 @@ class ViewController: UIViewController {
   }
   
   func changeLayout() {
-    
+    print("Change Layout")
+    NSLayoutConstraint.deactivateConstraints(tableConstraints)
+    NSLayoutConstraint.activateConstraints(twoColumnConstraints)
+    view.layoutIfNeeded()
   }
 }
 
