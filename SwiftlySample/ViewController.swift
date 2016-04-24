@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     
     button.titleLabel?.text = "Change Layout"
     button.backgroundColor = .greenColor()
-    button.addTarget(self, action: #selector(ViewController.changeLayout), forControlEvents: .TouchUpInside)
+    button.addTarget(self, action: #selector(ViewController.layoutButtonTap), forControlEvents: .TouchUpInside)
     view.addSubview(button)
   }
   
@@ -64,10 +64,15 @@ class ViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   
-  func changeLayout() {
+  func layoutButtonTap() {
     print("Change Layout")
-    UIView
-    
+    UIView.animateWithDuration(0.3) { 
+      self.reloadLayout()
+    }
+    view.layoutIfNeeded()
+  }
+  
+  func reloadLayout() {
     switch ConstraintStatus.status {
     case .tableView:
       NSLayoutConstraint.deactivateConstraints(tableConstraints)
@@ -78,7 +83,7 @@ class ViewController: UIViewController {
       NSLayoutConstraint.activateConstraints(tableConstraints)
       ConstraintStatus.status = ConstraintStatus.Status.tableView
     }
-    view.layoutIfNeeded()
+
   }
 }
 
