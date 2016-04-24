@@ -17,6 +17,14 @@ class ViewController: UIViewController {
   let propertyView = UIView(frame: CGRectZero)
   let button = UIButton(type: .Custom)
   
+  struct ConstraintStatus {
+    static var status = Status.tableView
+    enum Status {
+      case tableView
+      case twoColumn
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -58,8 +66,18 @@ class ViewController: UIViewController {
   
   func changeLayout() {
     print("Change Layout")
-    NSLayoutConstraint.deactivateConstraints(tableConstraints)
-    NSLayoutConstraint.activateConstraints(twoColumnConstraints)
+    UIView
+    
+    switch ConstraintStatus.status {
+    case .tableView:
+      NSLayoutConstraint.deactivateConstraints(tableConstraints)
+      NSLayoutConstraint.activateConstraints(twoColumnConstraints)
+      ConstraintStatus.status = ConstraintStatus.Status.twoColumn
+    case .twoColumn:
+      NSLayoutConstraint.deactivateConstraints(twoColumnConstraints)
+      NSLayoutConstraint.activateConstraints(tableConstraints)
+      ConstraintStatus.status = ConstraintStatus.Status.tableView
+    }
     view.layoutIfNeeded()
   }
 }
