@@ -45,17 +45,17 @@ class ViewController: UIViewController {
     print("self.view.fame \(view.frame)")
     
     if twoColumnConstraints.isEmpty {
-      twoColumnConstraints += tableView.applyLayout(.Vertical(), .Height() / 2)
-      twoColumnConstraints += propertyView.applyLayout(.Vertical() / 2, .Height() / 2)
+      twoColumnConstraints += tableView.applyLayout(.Horizontal(), .Height() / 2)
+      twoColumnConstraints += propertyView.applyLayout(.Horizontal(), .Height() / 2, .Top() == .Bottom(tableView))
+      twoColumnConstraints += button.applyLayout(.Horizontal(), .Height() == 60, .Bottom() == .Bottom(view))
       NSLayoutConstraint.deactivateConstraints(twoColumnConstraints)
     }
-    
+
     if tableConstraints.isEmpty {
-      button.applyLayout(.Horizontal(), .Height() == 60, .Bottom() == .Bottom(view))
       tableConstraints += tableView.applyLayout(.Horizontal(), .Vertical() - button.frame.height)
       tableConstraints += propertyView.applyLayout(.Horizontal(), .Top() == .Bottom(tableView))
+      tableConstraints += button.applyLayout(.Horizontal(), .Height() == 60, .Bottom() == .Bottom(view))
     }
-    
     NSLayoutConstraint.activateConstraints(tableConstraints)
   }
   
@@ -83,7 +83,6 @@ class ViewController: UIViewController {
       NSLayoutConstraint.activateConstraints(tableConstraints)
       ConstraintStatus.status = ConstraintStatus.Status.tableView
     }
-
   }
 }
 
